@@ -43,67 +43,102 @@ public class AttendanceServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		//エラーフラグ
-
+		boolean isError = false;
 
 		//パラメータの取得
-
-		String employeeId = request.getParameter("employee_id");
-
-
-
-
-		// ボタンの種別による分岐
-
-		String startedWork = request.getParameter("started_work");
-		String endedWork = request.getParameter("ended_work");
-		String startedBreak = request.getParameter("started_break");
-		String endedBreak = request.getParameter("ended_break");
-
-		//データの追加
-		Attendance attendance = new Attendance();
-		attendance.setEmployeeId(employeeId);
-
-		if (startedWork != null) {
+		//従業員IDの取得とバリデーション
+		Integer employeeId = null;
+		String strEmployeeId = request.getParameter("employeeId");
+		request.setAttribute("employeeId", strEmployeeId);
+		if (strEmployeeId != null && !strEmployeeId.isEmpty()) {
 			try {
-				AttendanceDao attendanceDao = DaoFactory.createAttendanceDao();
-				attendanceDao.insert1(attendance);
-				request.getRequestDispatcher("/WEB-INF/view/attendanceDone.jsp").forward(request, response);
+				employeeId = Integer.parseInt(strEmployeeId);
+			} catch (NumberFormatException e) {
+				request.setAttribute("employeeIdError", "半角数字で入力してください。");
+				isError = true;
+			}
 
-			} catch (Exception e) {
-				throw new ServletException(e);
+			// ボタンの種別による分岐
+
+			String startedWork = request.getParameter("started_work");
+			String endedWork = request.getParameter("ended_work");
+			String startedBreak = request.getParameter("started_break");
+			String endedBreak = request.getParameter("ended_break");
+			if (!isError) {
+				//データの追加
+				Attendance attendance = new Attendance();
+				attendance.setEmployeeId(employeeId);
+
+
+					if (startedWork != null) {
+						try {
+							AttendanceDao attendanceDao = DaoFactory.createAttendanceDao();
+							attendanceDao.insert1(attendance);
+							request.getRequestDispatcher("/WEB-INF/view/attendanceDone.jsp").forward(request, response);
+
+						} catch (Exception e) {
+							throw new ServletException(e);
+						}
+						if (!isError) {
+						} else {
+							// フォームの再表示
+							request.getRequestDispatcher("/WEB-INF/view/attendance.jsp")
+									.forward(request, response);
+						}
+					}
+
+					if (endedWork != null) {
+						try {
+							AttendanceDao attendanceDao = DaoFactory.createAttendanceDao();
+							attendanceDao.insert2(attendance);
+							request.getRequestDispatcher("/WEB-INF/view/attendanceDone.jsp").forward(request, response);
+
+						} catch (Exception e) {
+							throw new ServletException(e);
+						}
+						if (!isError) {
+						} else {
+							// フォームの再表示
+							request.getRequestDispatcher("/WEB-INF/view/attendance.jsp")
+									.forward(request, response);
+						}
+					}
+
+					if (startedBreak != null) {
+						try {
+							AttendanceDao attendanceDao = DaoFactory.createAttendanceDao();
+							attendanceDao.insert3(attendance);
+							request.getRequestDispatcher("/WEB-INF/view/attendanceDone.jsp").forward(request, response);
+
+						} catch (Exception e) {
+							throw new ServletException(e);
+						}
+						if (!isError) {
+						} else {
+							// フォームの再表示
+							request.getRequestDispatcher("/WEB-INF/view/attendance.jsp")
+									.forward(request, response);
+						}
+					}
+
+					if (endedBreak != null) {
+						try {
+							AttendanceDao attendanceDao = DaoFactory.createAttendanceDao();
+							attendanceDao.insert4(attendance);
+							request.getRequestDispatcher("/WEB-INF/view/attendanceDone.jsp").forward(request, response);
+
+						} catch (Exception e) {
+							throw new ServletException(e);
+						}
+						if (!isError) {
+						} else {
+							// フォームの再表示
+							request.getRequestDispatcher("/WEB-INF/view/attendance.jsp")
+									.forward(request, response);
+						}
+					}
+				}
 			}
 		}
-		if (endedWork != null) {
-			try {
-				AttendanceDao attendanceDao = DaoFactory.createAttendanceDao();
-				attendanceDao.insert2(attendance);
-				request.getRequestDispatcher("/WEB-INF/view/attendanceDone.jsp").forward(request, response);
-
-			} catch (Exception e) {
-				throw new ServletException(e);
-			}
-		}
-		if (startedBreak != null) {
-			try {
-				AttendanceDao attendanceDao = DaoFactory.createAttendanceDao();
-				attendanceDao.insert3(attendance);
-				request.getRequestDispatcher("/WEB-INF/view/attendanceDone.jsp").forward(request, response);
-
-			} catch (Exception e) {
-				throw new ServletException(e);
-			}
-		}
-		if (endedBreak != null) {
-			try {
-				AttendanceDao attendanceDao = DaoFactory.createAttendanceDao();
-				attendanceDao.insert4(attendance);
-				request.getRequestDispatcher("/WEB-INF/view/attendanceDone.jsp").forward(request, response);
-
-			} catch (Exception e) {
-				throw new ServletException(e);
-			}
-		}
-		}
-
 	}
 

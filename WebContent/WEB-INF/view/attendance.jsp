@@ -51,10 +51,8 @@ window . onload = clock;
 <form action="" method="post">
 
  <c:if test="${not empty employeeIdError}">
- <p>
- <c:out value="※${employeeIdError}" />
- </p> </c:if>
- <input type="text" name="employee_id" value="<c:out value="${employeeId}"/>" placeholder="従業員ID" />
+ <p><c:out value="※${employeeIdError}" /></p> </c:if>
+ <input type="text" name="employeeId" value="<c:out value="${employeeId}"/>" placeholder="従業員ID" />
  <br>
  <br>
 <input type="submit" name="started_work" class="btn-primary btn-block" size="20" value="出勤" pattern="^[0-9]+$"/>

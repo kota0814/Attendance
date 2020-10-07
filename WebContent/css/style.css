@@ -1,11 +1,10 @@
 @CHARSET "UTF-8";
 
-.nameDate {
-	font-weight: bold;
-}
 
 h1 {
 	color: red;
 }
-
+body{
+	background-color: #ffffff;
+}
 @import url("login.css");

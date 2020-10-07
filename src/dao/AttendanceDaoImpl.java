@@ -47,7 +47,7 @@ public class AttendanceDaoImpl implements AttendanceDao {
 			//出勤処理
 			String sql = "INSERT INTO attendance (employee_id,started_work,date) VALUE(?,NOW(),NOW())";
 				PreparedStatement stmt = con.prepareStatement(sql);
-				stmt.setString(1,attendance.getEmployeeId());
+				stmt.setInt(1,attendance.getEmployeeId());
 				stmt.executeUpdate();
 		}catch (Exception e) {
 			}
@@ -61,7 +61,7 @@ public class AttendanceDaoImpl implements AttendanceDao {
 			//退勤処理
 				String sql2 = "INSERT INTO attendance (employee_id,ended_work,date) VALUE(?,NOW(),NOW())";
 				PreparedStatement stmt2 = con.prepareStatement(sql2);
-				stmt2.setString(1,attendance.getEmployeeId());
+				stmt2.setInt(1,attendance.getEmployeeId());
 				stmt2.executeUpdate();
 			}catch (Exception e) {
 			}
@@ -74,7 +74,7 @@ public class AttendanceDaoImpl implements AttendanceDao {
 			//休憩開始処理
 				String sql3 = "INSERT INTO attendance (employee_id,started_break,date) VALUE(?,NOW(),NOW())";
 				PreparedStatement stmt3 = con.prepareStatement(sql3);
-				stmt3.setString(1,attendance.getEmployeeId());
+				stmt3.setInt(1,attendance.getEmployeeId());
 				stmt3.executeUpdate();
 				}catch (Exception e) {
 				}
@@ -87,7 +87,7 @@ public class AttendanceDaoImpl implements AttendanceDao {
 			//休憩終了処理
 				String sql4 = "INSERT INTO attendance (employee_id,ended_break,date) VALUE(?,NOW(),NOW())";
 				PreparedStatement stmt4 = con.prepareStatement(sql4);
-				stmt4.setString(1,attendance.getEmployeeId());
+				stmt4.setInt(1,attendance.getEmployeeId());
 				stmt4.executeUpdate();
 
 				}catch (Exception e) {
@@ -119,7 +119,7 @@ public class AttendanceDaoImpl implements AttendanceDao {
 	private Attendance mapToAttendance(ResultSet rs) throws Exception {
 		Attendance attendance = new Attendance();
 		attendance.setId((Integer) rs.getObject("id"));
-		attendance.setEmployeeId(rs.getString("employee_id"));
+		attendance.setEmployeeId((Integer) rs.getObject("employee_id"));
 		attendance.setStartedWork(rs.getDate("started_work"));
 		attendance.setEndedWork(rs.getDate("ended_work"));
 		attendance.setStartedBreak(rs.getDate("started_break"));

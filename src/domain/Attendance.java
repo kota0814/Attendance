@@ -10,7 +10,7 @@ public class Attendance {
 	private Date endedWork;
 	private Date startedBreak;
 	private Date endedBreak;
-	private String employeeId;
+	private Integer employeeId;
 
 
 	public Integer getId() {
@@ -50,11 +50,12 @@ public class Attendance {
 	public void setEndedBreak(Date endedBreak) {
 		this.endedBreak = endedBreak;
 	}
-	public String getEmployeeId() {
+	public Integer getEmployeeId() {
 		return employeeId;
 	}
-	public void setEmployeeId(String employeeId) {
+	public void setEmployeeId(Integer employeeId) {
 		this.employeeId = employeeId;
 	}
+
 }
 
