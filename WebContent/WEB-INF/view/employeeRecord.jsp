@@ -80,13 +80,7 @@
 </div>
 </div>
 <br>
-<div class="row">
-<table width="30%" class="table table-bordered table-hover">
-<tr align="center" bgcolor="orange">総労働時間</tr>
-<c:out value="${dlTotal}"/>
-<tr>
-</table>
-</div>
+
 <p>
  <a href="menu"><input type="submit" class="btn-success" value="メニュー" />
 </a>

@@ -31,10 +31,7 @@
  <th width="12%">休憩開始時間</th>
  <th width="12%">休憩終了時間</th>
  <th width="12%">退勤時間</th>
- <%-- <th width="5%">実働時間</th>
- <th width="5%">休憩時間</th>--%>
- <th width="10%">編集</th>
- <th width="10%">削除</th>
+ <th width="20%">削除</th>
   </tr>
  <c:forEach items="${dailyRecordList}" var="dailyRecord">
  <tr align="center">
@@ -45,9 +42,6 @@
  <td><fmt:formatDate value="${dailyRecord.startedBreak}" type="TIME" timeStyle="SHORT" /></td>
  <td><fmt:formatDate value="${dailyRecord.endedBreak}" type="TIME" timeStyle="SHORT" /></td>
  <td><fmt:formatDate value="${dailyRecord.endedWork}" type="TIME" timeStyle="SHORT" /></td>
- <%-- <td><c:out value="${totalWork}" /></td>
- <td><c:out value="${totalBreak}" /></td>--%>
- <td><a href="editEmployee?id=<c:out value="${employee.id}" />"><input type="submit" class="btn-success" value="編集" /></a></td>
  <td><a href="deleteAttendance?id=<c:out value="${dailyRecord.id}" />"><input type="submit" class="btn-danger" value="削除" /></a></td>
  </tr>
  </c:forEach>
