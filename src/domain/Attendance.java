@@ -12,37 +12,46 @@ public class Attendance {
 	private Date endedBreak;
 	private String employeeId;
 
-
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public Date getDate() {
 		return date;
 	}
+
 	public void setDate(Date date) {
 		this.date = date;
 	}
+
 	public Date getStartedWork() {
 		return startedWork;
 	}
+
 	public void setStartedWork(Date startedWork) {
 		this.startedWork = startedWork;
 	}
+
 	public Date getEndedWork() {
 		return endedWork;
 	}
+
 	public void setEndedWork(Date endedWork) {
 		this.endedWork = endedWork;
 	}
+
 	public Date getStartedBreak() {
 		return startedBreak;
 	}
+
 	public void setStartedBreak(Date startedBreak) {
 		this.startedBreak = startedBreak;
 	}
+
 	public Date getEndedBreak() {
 		return endedBreak;
 	}
@@ -50,11 +59,13 @@ public class Attendance {
 	public void setEndedBreak(Date endedBreak) {
 		this.endedBreak = endedBreak;
 	}
+
 	public String getEmployeeId() {
 		return employeeId;
 	}
+
 	public void setEmployeeId(String employeeId) {
 		this.employeeId = employeeId;
 	}
-}
 
+}

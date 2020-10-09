@@ -19,11 +19,11 @@ import domain.Admin;
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		request.getRequestDispatcher("/WEB-INF/view/login.jsp").forward(request, response);
 	}
@@ -31,7 +31,8 @@ public class LoginServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		try {
 			String loginId = request.getParameter("loginId");
@@ -39,9 +40,9 @@ public class LoginServlet extends HttpServlet {
 			AdminDao adminDao = DaoFactory.createAdminDao();
 			Admin admin = adminDao.findByLoginIdAndLoginPass(loginId, loginPass);
 			if (admin != null) {
-				request.getSession().setAttribute("loginId",admin.getLoginId());
+				request.getSession().setAttribute("loginId", admin.getLoginId());
 				response.sendRedirect("menu");
-			}else {
+			} else {
 				request.setAttribute("error", true);
 				request.getRequestDispatcher("/WEB-INF/view/login.jsp").forward(request, response);
 

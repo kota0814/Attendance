@@ -16,12 +16,12 @@ import javax.servlet.annotation.WebFilter;
 @WebFilter("/*")
 public class CharsetFilter implements Filter {
 
-    /**
-     * Default constructor.
-     */
-    public CharsetFilter() {
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * Default constructor.
+	 */
+	public CharsetFilter() {
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see Filter#destroy()
@@ -33,7 +33,8 @@ public class CharsetFilter implements Filter {
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
 		//前処理（文字エンコーディングの設定）
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");

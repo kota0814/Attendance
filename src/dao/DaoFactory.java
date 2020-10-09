@@ -24,18 +24,17 @@ public class DaoFactory {
 		return new DailyRecordDaoImpl(getDataSource());
 	}
 
-
 	private static DataSource getDataSource() {
 		InitialContext ctx = null;
 		DataSource ds = null;
 		try {
 			ctx = new InitialContext();
 			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/attendancemanager");
-		} catch(NamingException e) {
-			if(ctx != null) {
+		} catch (NamingException e) {
+			if (ctx != null) {
 				try {
 					ctx.close();
-				}catch (NamingException e1) {
+				} catch (NamingException e1) {
 					throw new RuntimeException(e1);
 				}
 			}
@@ -44,6 +43,4 @@ public class DaoFactory {
 		}
 		return ds;
 	}
-	}
-
-
+}

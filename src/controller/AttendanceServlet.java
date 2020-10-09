@@ -42,15 +42,11 @@ public class AttendanceServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//エラーフラグ
-
 
 		//パラメータの取得
+		//従業員IDの取得とバリデーション
 
 		String employeeId = request.getParameter("employee_id");
-
-
-
 
 		// ボタンの種別による分岐
 
@@ -72,7 +68,9 @@ public class AttendanceServlet extends HttpServlet {
 			} catch (Exception e) {
 				throw new ServletException(e);
 			}
+
 		}
+
 		if (endedWork != null) {
 			try {
 				AttendanceDao attendanceDao = DaoFactory.createAttendanceDao();
@@ -82,7 +80,9 @@ public class AttendanceServlet extends HttpServlet {
 			} catch (Exception e) {
 				throw new ServletException(e);
 			}
+
 		}
+
 		if (startedBreak != null) {
 			try {
 				AttendanceDao attendanceDao = DaoFactory.createAttendanceDao();
@@ -92,7 +92,9 @@ public class AttendanceServlet extends HttpServlet {
 			} catch (Exception e) {
 				throw new ServletException(e);
 			}
+
 		}
+
 		if (endedBreak != null) {
 			try {
 				AttendanceDao attendanceDao = DaoFactory.createAttendanceDao();
@@ -102,8 +104,8 @@ public class AttendanceServlet extends HttpServlet {
 			} catch (Exception e) {
 				throw new ServletException(e);
 			}
-		}
-		}
 
+		}
 	}
 
+}

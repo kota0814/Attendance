@@ -20,8 +20,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 	@Override
 	public List<Employee> findAll() throws Exception {
-		List<Employee>employeeList = new ArrayList<>();
-		try(Connection con = ds.getConnection()){
+		List<Employee> employeeList = new ArrayList<>();
+		try (Connection con = ds.getConnection()) {
 			String sql = "select * from employee";
 			PreparedStatement stmt = con.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
@@ -38,12 +38,12 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	@Override
 	public Employee findById(Integer id) throws Exception {
 		Employee employee = null;
-		try(Connection con = ds.getConnection()){
+		try (Connection con = ds.getConnection()) {
 			String sql = "select * from employee where employee.id =?";
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setInt(1, id);
 			ResultSet rs = stmt.executeQuery();
-			if(rs.next()) {
+			if (rs.next()) {
 				employee = mapToEmployee(rs);
 			}
 		} catch (Exception e) {
@@ -58,7 +58,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			String sql = "insert into employee (name) values(?)";
 			PreparedStatement stmt = con.prepareStatement(sql);
 
-
 			stmt.setString(1, employee.getName());
 			stmt.executeUpdate();
 		} catch (Exception e) {
@@ -68,10 +67,9 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 	@Override
 	public void update(Employee employee) throws Exception {
-		try(Connection con = ds.getConnection()) {
+		try (Connection con = ds.getConnection()) {
 			String sql = "UPDATE employee SET name=? WHERE id=?";
 			PreparedStatement stmt = con.prepareStatement(sql);
-
 
 			stmt.setString(1, employee.getName());
 			stmt.setInt(2, employee.getId());
@@ -80,13 +78,12 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			throw e;
 		}
 
-
 	}
 
 	@Override
 	public void delete(Employee employee) throws Exception {
 		int id = employee.getId();
-		try(Connection con = ds.getConnection()) {
+		try (Connection con = ds.getConnection()) {
 			String sql = "delete from employee where id=?";
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setInt(1, id);
@@ -95,10 +92,9 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			throw e;
 		}
 
-
 	}
 
-	private Employee mapToEmployee(ResultSet rs) throws Exception{
+	private Employee mapToEmployee(ResultSet rs) throws Exception {
 		Employee employee = new Employee();
 		employee.setId((Integer) rs.getObject("id"));
 		employee.setName(rs.getString("name"));

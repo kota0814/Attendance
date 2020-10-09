@@ -16,7 +16,7 @@ public class AdminDaoImpl implements AdminDao {
 	private DataSource ds;
 
 	public AdminDaoImpl(DataSource ds) {
-		this.ds =ds;
+		this.ds = ds;
 	}
 
 	@Override
@@ -52,25 +52,26 @@ public class AdminDaoImpl implements AdminDao {
 	@Override
 	public Admin findByLoginIdAndLoginPass(String loginId, String loginPass) throws Exception {
 
-		Admin admin =null;
+		Admin admin = null;
 		try (Connection con = ds.getConnection()) {
 			String sql = "SELECT * FROM admins WHERE login_id=?";
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setString(1, loginId);
 			ResultSet rs = stmt.executeQuery();
 			if (rs.next()) {
-			if (BCrypt.checkpw(loginPass, rs.getString("login_pass"))) {
-				admin = mapToAdmin(rs);
+				if (BCrypt.checkpw(loginPass, rs.getString("login_pass"))) {
+					admin = mapToAdmin(rs);
+				}
 			}
-			}
-		}catch (Exception e) {
+		} catch (Exception e) {
 			throw e;
 		}
 		return admin;
 	}
-	private Admin mapToAdmin(ResultSet rs) throws Exception{
+
+	private Admin mapToAdmin(ResultSet rs) throws Exception {
 		Admin admin = new Admin();
-		admin.setId((Integer)rs.getObject("id"));
+		admin.setId((Integer) rs.getObject("id"));
 		admin.setLoginId(rs.getString("login_id"));
 		admin.setLoginPass(rs.getString("login_pass"));
 		return admin;

@@ -21,27 +21,27 @@ import domain.DailyRecord;
 public class RecordServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		try {
 			DailyRecordDao dailyRecordDao = DaoFactory.createDailyRecordDao();
-			List<DailyRecord>dailyRecordList = dailyRecordDao.findAll();
+			List<DailyRecord> dailyRecordList = dailyRecordDao.findAll();
 			request.setAttribute("dailyRecordList", dailyRecordList);
 			request.getRequestDispatcher("/WEB-INF/view/RecordList.jsp").forward(request, response);
 		} catch (Exception e) {
 			throw new ServletException(e);
 		}
 
-
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		//String name = request.getParameter("name");
 
@@ -51,8 +51,8 @@ public class RecordServlet extends HttpServlet {
 		//	List<DailyRecord>dailyRecordList = dailyRecordDao.findByName(name);
 		//	request.setAttribute("dailyRecordList", dailyRecordList);
 		//	request.getRequestDispatcher("/WEB-INF/view/employeeRecord.jsp").forward(request, response);
-	//	} catch (Exception e) {
-	//		throw new ServletException(e);
+		//	} catch (Exception e) {
+		//		throw new ServletException(e);
 		//}
 
 		Date date = Date.valueOf(request.getParameter("date"));
@@ -60,16 +60,13 @@ public class RecordServlet extends HttpServlet {
 		try {
 
 			DailyRecordDao dailyRecordDao = DaoFactory.createDailyRecordDao();
-			List<DailyRecord>dailyRecordList = dailyRecordDao.findByDate(date);
+			List<DailyRecord> dailyRecordList = dailyRecordDao.findByDate(date);
 			request.setAttribute("dailyRecordList", dailyRecordList);
 			request.getRequestDispatcher("/WEB-INF/view/dailyRecord.jsp").forward(request, response);
 		} catch (Exception e) {
-		throw new ServletException(e);
+			throw new ServletException(e);
 		}
 
-
 	}
-
-
 
 }
