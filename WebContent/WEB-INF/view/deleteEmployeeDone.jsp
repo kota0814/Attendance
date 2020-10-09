@@ -7,10 +7,10 @@
 <title>従業員管理</title>
 </head>
 <body>
-<h1>従業員削除</h1>
-<p>削除しました。</p>
-<p>
- <a href="listEmployee">従業員一覧へ戻る</a>
-</p>
+	<h1>従業員削除</h1>
+	<p>削除しました。</p>
+	<p>
+		<a href="listEmployee">従業員一覧へ戻る</a>
+	</p>
 </body>
 </html>

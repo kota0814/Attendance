@@ -1,6 +1,6 @@
-<%@ page pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -10,54 +10,63 @@
 <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-<form action="./Record" method="post">
-<input type="date" name="date" value="">
-<input type="submit" class="btn-sm btn-warning" value="決定" />
-</form>
-<form action="./employeeRecord" method="post">
-<input type="text" name="name" value="" placeholder="従業員氏名">
-<input type="submit" class="btn-sm btn-warning" value="決定" />
-</form>
-<div class="container">
-<h1><strong>勤怠記録表示</strong></h1>
- <div class="row">
-<table class="table table-bordered table-hover">
+	<form action="./Record" method="post">
+		<input type="date" name="date" value=""> <input type="submit"
+			class="btn-sm btn-warning" value="決定" />
+	</form>
+	<form action="./employeeRecord" method="post">
+		<input type="text" name="name" value="" placeholder="従業員氏名"> <input
+			type="submit" class="btn-sm btn-warning" value="決定" />
+	</form>
+	<div class="container">
+		<h1>
+			<strong>勤怠記録表示</strong>
+		</h1>
+		<div class="row">
+			<table class="table table-bordered table-hover">
 
- <tr align="center" bgcolor="orange">
- <th width="5%">日付</th>
- <th width="5%">ID</th>
- <th width="17%">名前</th>
- <th width="12%">出勤時間</th>
- <th width="12%">休憩開始時間</th>
- <th width="12%">休憩終了時間</th>
- <th width="12%">退勤時間</th>
- <th width="20%">削除</th>
-  </tr>
- <c:forEach items="${dailyRecordList}" var="dailyRecord">
- <tr align="center">
- <td><c:out value="${dailyRecord.date}"/></td>
- <td><c:out value="${dailyRecord.employeeId}" /></td>
- <td><c:out value="${dailyRecord.name}" /></td>
- <td><fmt:formatDate value="${dailyRecord.startedWork}" type="TIME" timeStyle="SHORT" /></td>
- <td><fmt:formatDate value="${dailyRecord.startedBreak}" type="TIME" timeStyle="SHORT" /></td>
- <td><fmt:formatDate value="${dailyRecord.endedBreak}" type="TIME" timeStyle="SHORT" /></td>
- <td><fmt:formatDate value="${dailyRecord.endedWork}" type="TIME" timeStyle="SHORT" /></td>
- <td><a href="deleteAttendance?id=<c:out value="${dailyRecord.id}" />"><input type="submit" class="btn-danger" value="削除" /></a></td>
- </tr>
- </c:forEach>
-</table>
-</div>
-</div>
+				<tr align="center" bgcolor="orange">
+					<th width="5%">日付</th>
+					<th width="5%">ID</th>
+					<th width="17%">名前</th>
+					<th width="12%">出勤時間</th>
+					<th width="12%">休憩開始時間</th>
+					<th width="12%">休憩終了時間</th>
+					<th width="12%">退勤時間</th>
+					<th width="20%">削除</th>
+				</tr>
+				<c:forEach items="${dailyRecordList}" var="dailyRecord">
+					<tr align="center">
+						<td><c:out value="${dailyRecord.date}" /></td>
+						<td><c:out value="${dailyRecord.employeeId}" /></td>
+						<td><c:out value="${dailyRecord.name}" /></td>
+						<td><fmt:formatDate value="${dailyRecord.startedWork}"
+								type="TIME" timeStyle="SHORT" /></td>
+						<td><fmt:formatDate value="${dailyRecord.startedBreak}"
+								type="TIME" timeStyle="SHORT" /></td>
+						<td><fmt:formatDate value="${dailyRecord.endedBreak}"
+								type="TIME" timeStyle="SHORT" /></td>
+						<td><fmt:formatDate value="${dailyRecord.endedWork}"
+								type="TIME" timeStyle="SHORT" /></td>
+						<td><a
+							href="deleteAttendance?id=<c:out value="${dailyRecord.id}" />"><input
+								type="submit" class="btn-danger" value="削除" /></a></td>
+					</tr>
+				</c:forEach>
+			</table>
+		</div>
+	</div>
 
-<br>
+	<br>
 
-<p>
- <a href="menu"><input type="submit" class="btn-success" value="メニューへ" />
-</a>
-</p>
-<p><a href="logout"><input type="submit" class="btn-primary" value="ログアウト" />
-</a>
-<script src="js/jquery-2.2.4.min.js"></script>
-<script src="js/bootstrap.bundle.min.js"></script>
+	<p>
+		<a href="menu"><input type="submit" class="btn-success"
+			value="メニューへ" /> </a>
+	</p>
+	<p>
+		<a href="logout"><input type="submit" class="btn-primary"
+			value="ログアウト" /> </a>
+		<script src="js/jquery-2.2.4.min.js"></script>
+		<script src="js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
